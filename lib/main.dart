@@ -1,57 +1,22 @@
+import 'package:advisory_app_test/views/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MainPage(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Container(
-
-    );
-
-   /*return MaterialApp(
-     onGenerateRoute: RouteConfig().onGenerateRoute,
-     debugShowCheckedModeBanner: false,
-     title: 'MTR Web',
-     navigatorKey: locator<NavigationService>().navigationKey,
-     theme: ThemeData(
-       primaryColor: Colors.blue,
-     ),
-     home: StartUpView(),
-     supportedLocales: [
-       Locale('en', 'US'),
-     ],
-     localizationsDelegates: [CountryLocalizations.delegate],
-   );*/
   }
 }
