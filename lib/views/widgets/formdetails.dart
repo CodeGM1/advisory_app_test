@@ -8,10 +8,10 @@ class WidgetFormDetails extends StatefulWidget {
 
   final String type;
   final String? headerText;
-  final TextEditingController? userControl;
-  final TextEditingController? passControl;
+  final String? hintText;
+  final TextEditingController? textControl;
 
-  WidgetFormDetails({Key? key, required this.type, this.headerText, this.userControl, this.passControl}) : super(key: key);
+  WidgetFormDetails({Key? key, required this.type, this.headerText, this.hintText, this.textControl}) : super(key: key);
 
   @override
   _WidgetFormDetailsState createState() => _WidgetFormDetailsState();
@@ -19,27 +19,16 @@ class WidgetFormDetails extends StatefulWidget {
 
 class _WidgetFormDetailsState extends State<WidgetFormDetails> {
 
-  TextEditingController userControl = TextEditingController();
-  TextEditingController passControl = TextEditingController();
   bool _pwHide = true;
-
-
-  void dispose(){
-    userControl.dispose();
-    passControl.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
 
-    final String headerText = widget.headerText as String;
-
     switch(widget.type){
       case 'normal':
-        return _buildTextFieldNormalWidget(headerText);
+        return _buildTextFieldNormalWidget(widget.headerText as String);
       case 'password':
-        return _buildTextFieldPasswordWidget(headerText);
+        return _buildTextFieldPasswordWidget(widget.headerText as String);
       default:
         return Container();
     }
@@ -55,15 +44,19 @@ class _WidgetFormDetailsState extends State<WidgetFormDetails> {
         SizedBox(
           height: 38,
           child: TextFormField(
-              style: TextStyle(fontFamily: 'Proxima Nova', fontSize: 20, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontFamily: 'Proxima Nova', fontSize: 20, fontWeight: FontWeight.w500),
               scrollPadding: EdgeInsets.zero,
-              inputFormatters: [LengthLimitingTextInputFormatter(20)],
-              controller: userControl,
+              inputFormatters: [LengthLimitingTextInputFormatter(32)],
+              controller: widget.textControl,
               cursorHeight: 22,
+
               decoration: InputDecoration(
+                hintText: widget.hintText,
+                hintStyle: fontHintStyle,
                 contentPadding: const EdgeInsets.only(top:10,left:8,right:8,),
                 fillColor: Colors.white,
                 filled: true,
+                prefixIcon: const Icon(Icons.account_circle, color: Colors.black45,size: 20,),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: const BorderSide(
@@ -95,12 +88,15 @@ class _WidgetFormDetailsState extends State<WidgetFormDetails> {
         SizedBox(
           height: 38,
           child: TextFormField(
-            style: TextStyle(fontFamily: 'Proxima Nova', fontSize: 20,letterSpacing: _pwHide? 3 : 0, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontFamily: 'Proxima Nova', fontSize: 20, fontWeight: FontWeight.w500),
             obscureText: _pwHide,
             scrollPadding: EdgeInsets.zero,
-            controller: passControl,
+            inputFormatters: [LengthLimitingTextInputFormatter(32)],
+            controller: widget.textControl,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top:0,left:10),
+              hintText: widget.hintText,
+              hintStyle: fontHintStyle,
               suffixIcon: IconButton(
                 icon: Icon(_pwHide? Icons.visibility:Icons.visibility_off),
                 onPressed: (){
@@ -109,6 +105,7 @@ class _WidgetFormDetailsState extends State<WidgetFormDetails> {
                   });
                 },
               ),
+              prefixIcon: const Icon(Icons.lock, color: Colors.black45,size: 20,),
               fillColor: Colors.white,
               filled: true,
               focusedBorder: OutlineInputBorder(

@@ -17,6 +17,7 @@ class _WidgetBottomBarState extends State<WidgetBottomBar> {
 
   Widget _buildBottomBar(){
     return Container(
+        height: 100,
         color: bgBlueColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

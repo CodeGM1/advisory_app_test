@@ -30,33 +30,27 @@ class _WidgetButtonsState extends State<WidgetButtons> {
 
   Widget _buildNormalButton(){
 
-    return Container(
-        child: ElevatedButton(
-          child: Text(widget.buttonText, style: fontNormalStyle),
-          onPressed: widget.onPressedButton,
-          style: ElevatedButton.styleFrom(
-            primary: Colors.white12,
-            padding: const EdgeInsets.all(20),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            textStyle: fontNormalStyle,
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        child: Text(widget.buttonText, style: fontNormalStyle),
+        onPressed: widget.onPressedButton,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.white70,
+          padding: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
+          textStyle: fontNormalStyle,
         ),
-
-      /*MaterialButton(
-        highlightColor: Colors.red,
-        onPressed: () {},
-        child: const Text('Login using email', style: fontNormalStyle,),
-      )*/
-
+      ),
     );
   }
 
   Widget _buildBackButton(){
 
     return IconButton(
-      icon: Icon(Icons.arrow_back_outlined, color: Colors.white, size: 30),
+      icon: const Icon(Icons.arrow_back_outlined, color: Colors.white, size: 30),
       onPressed: widget.onPressedButton,
     );
 

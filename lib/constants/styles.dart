@@ -16,5 +16,12 @@ const TextStyle fontNormalStyle = TextStyle(
     fontFamily: 'Proxima Nova'
 );
 
+const TextStyle fontHintStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: hintFontColor,
+    fontFamily: 'Proxima Nova'
+);
+
 
 

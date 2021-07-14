@@ -31,41 +31,64 @@ class _MainPageState extends State<MainPage> {
       resizeToAvoidBottomInset: false,
       drawer: WidgetDrawer(),
       body:
-      Stack(
-        children: [
-          Center(
-            child: Container(
+      Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            /*Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFF17C6C3),
+                    Color(0xFF15B6B4),
+                    Color(0xFF129794),
+                    Color(0xFF108785),
+
+                  ],
+                  stops: [0.1, 0.4, 0.7, 0.9],
+                )
+              )
+            ),*/
+
+            Center(
+              child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 child: Column(
                   children: [
-
                     Expanded(
                       flex: 1,
                       child: WidgetAppBar(),
                     ),
-
                     Expanded(
                       flex: 9,
                       child: Column(
                         children: [
                           Expanded(
-                            flex: 6,
+                            flex: 7,
                             child: Container(),
                           ),
                           Expanded(
                             flex: 3,
-                            child: WidgetButtons(
-                              type:'normal',
-                              buttonText: 'Login using Email',
-                              onPressedButton: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return LoginPage();
-                                  }),
-                                );
-                              },
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(maxWidth: screenSize.width/1.2),
+                              child: WidgetButtons(
+                                type:'normal',
+                                buttonText: 'Login using Email',
+                                onPressedButton: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return LoginPage();
+                                    }),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                           Expanded(
@@ -74,17 +97,37 @@ class _MainPageState extends State<MainPage> {
                           ),
                           Expanded(
                             flex: 3,
-                            child: WidgetButtons(
-                              type:'normal',
-                              buttonText: 'Login using GMail',
-                              onPressedButton: (){},
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(maxWidth: screenSize.width/1.2),
+                              child: Text('Or', style: fontNormalStyle,)
                             ),
                           ),
                           Expanded(
-                            flex: 11,
+                            flex: 3,
+                            child: GestureDetector(
+                              onTap: (){print('Login FB');},
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black45,
+                                      offset: Offset(0,2),
+                                      blurRadius: 6.0,
+                                    ),
+                                  ],
+                                  image: DecorationImage(
+                                    image: AssetImage('images/fb_logo.png'),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ),
+                          Expanded(
+                            flex: 10,
                             child: Container(),
                           ),
-
                         ],
                       ),
                     ),
@@ -97,20 +140,76 @@ class _MainPageState extends State<MainPage> {
 
                   ],
                 )
-            ),
-          ),
-          Positioned(
-              left: 10,
-              top: 10,
-              child: IconButton(
-                icon: const Icon(Icons.menu, color: Colors.white),
-                onPressed: (){
-                  scaffoldKey.currentState!.openDrawer();
-                },
               ),
-          )
-        ],
+            ),
 
+           /* SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 20,
+              ),
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: WidgetAppBar(),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: Container(),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: WidgetButtons(
+                                type:'normal',
+                                buttonText: 'Login using Email',
+                                onPressedButton: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return LoginPage();
+                                    }),
+                                  );
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: WidgetButtons(
+                                type:'normal',
+                                buttonText: 'Login using GMail',
+                                onPressedButton: (){},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: WidgetBottomBar(),
+                      )
+                    ],
+                  ),
+              ),
+            ),*/
+            Positioned(
+                left: 10,
+                top: 10,
+                child: IconButton(
+                  icon: const Icon(Icons.menu, color: Colors.white),
+                  onPressed: (){
+                    scaffoldKey.currentState!.openDrawer();
+                  },
+                ),
+            )
+          ],
+
+        ),
       ),
 
 
